@@ -1,0 +1,5 @@
+/week4/
+create_project_structure.py
+.env
+# Ignore Python cache files
+__pycache__/
