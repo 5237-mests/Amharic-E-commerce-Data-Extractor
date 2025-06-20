@@ -7,7 +7,7 @@ from typing import List, Optional
 class TelegramScraper:
     def __init__(self, session_name: str, api_id: int, api_hash: str):
         self.client = TelegramClient(session_name, api_id, api_hash)
-        self.media_dir = 'telegram_media'
+        self.media_dir = '../data/telegram_media'
         os.makedirs(self.media_dir, exist_ok=True)
 
     async def _scrape_channel(self, channel_username: str, writer: csv.writer):
@@ -18,7 +18,7 @@ class TelegramScraper:
             print(f"Scraping {channel_title} (@{channel_username})...")
             
             async for message in self.client.iter_messages(entity, limit=1000):
-                await asyncio.sleep(0.5)  # Rate limiting
+                await asyncio.sleep(0.05)  # Rate limiting
                 
                 media_path = None
                 if message.media and hasattr(message.media, 'photo'):
